@@ -1,17 +1,15 @@
-import { useState } from 'react';
+import useWage from './hooks/useWage';
 
 const Month = ({ name, years }) => {
-  const [wage, setWage] = useState(years * 3);
-  const [extraHours, setExtraHours] = useState(0);
-  const [missedHours, setMissedHours] = useState(0);
-
-  const incrementWage = () => {
-    setWage(wage + Number(extraHours));
-  };
-
-  const decrementWage = () => {
-    setWage(wage - Number(missedHours));
-  };
+  const {
+    wage,
+    extraHours,
+    missedHours,
+    incrementWage,
+    decrementWage,
+    incrementHours,
+    decrementHours,
+  } = useWage(years);
 
   return (
     <div>
@@ -23,7 +21,7 @@ const Month = ({ name, years }) => {
         <input
           value={missedHours}
           onChange={(e) => {
-            setMissedHours(e.target.value);
+            decrementHours(e);
           }}
         ></input>
       </label>
@@ -37,7 +35,7 @@ const Month = ({ name, years }) => {
         <input
           value={extraHours}
           onChange={(e) => {
-            setExtraHours(e.target.value);
+            incrementHours(e);
           }}
         ></input>
       </label>
