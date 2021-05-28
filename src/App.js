@@ -1,4 +1,6 @@
+import Annum from './Component/Annum';
 import useAxios from './Component/hooks/useAxios';
+import Month from './Component/Month';
 
 const App = () => {
   const { response, loading, error } = useAxios({
@@ -39,6 +41,15 @@ const App = () => {
           </div>
         </div>
       )}
+      <br />
+      <br />
+      <Month name="Jack" years={10} />
+
+      <br />
+      <br />
+      <br />
+
+      <Annum name="Jack" years={10} />
     </div>
   );
 };
