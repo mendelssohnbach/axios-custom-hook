@@ -10,7 +10,6 @@ const useAxios = ({ url, method, body = null, headers = null }) => {
 
   const fetchData = () => {
     axios[method](url, JSON.parse(headers), JSON.parse(body))
-      .get('/posts')
       .then((res) => {
         setResponse(res.data);
       })
