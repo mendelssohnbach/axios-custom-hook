@@ -3,13 +3,13 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'https://jsonplaceholder.typicode.com';
 
-const useAxios = () => {
+const useAxios = ({ url, method, body = null, headers = null }) => {
   const [response, setResponse] = useState(null);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
 
   const fetchData = () => {
-    axios
+    axios[method](url, JSON.parse(headers), JSON.parse(body))
       .get('/posts')
       .then((res) => {
         setResponse(res.data);
@@ -24,7 +24,7 @@ const useAxios = () => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [method, url, body, headers]);
 
   // カスタムフックの返り値
   return { response, error, loading };
